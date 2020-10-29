@@ -21,7 +21,7 @@ export const GetMovies = () => async (
 
     dispatch({
       type: MOVIE_LIST_SUCCESS,
-      payload: data,
+      payload: data.results,
     })
   } catch (error) {
     dispatch({

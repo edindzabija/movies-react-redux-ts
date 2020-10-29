@@ -6,11 +6,12 @@ export const MOVIE_LIST_SUCCESS = 'MOVIE_LIST_SUCCESS'
 // export const MOVIE_DETAILS_FAIL = 'MOVIE_DETAILS_FAIL'
 // export const MOVIE_DETAILS_SUCCESS = 'MOVIE_DETAILS_SUCCESS'
 
-export type MovieType = {
-  results: Movie[]
-}
+// export interface MovieType {
+//   loading: boolean
+//   movie: Movie[]
+// }
 
-export type Movie = {
+export interface Movie {
   id: number
   original_title: string
   overview: string
@@ -28,7 +29,7 @@ export interface MoviesFail {
 
 export interface MoviesSuccess {
   type: typeof MOVIE_LIST_SUCCESS
-  payload: MovieType
+  payload: Movie[]
 }
 
 export type MovieDispatchTypes = MoviesLoading | MoviesFail | MoviesSuccess
