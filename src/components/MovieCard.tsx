@@ -2,15 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Movie } from '../actions/MovieActionTypes'
 
-// interface MovieProps {
-//   id: number
-//   original_title: string
-//   overview: string
-//   poster_path: string
-//   backdrop_path: string
-//   release_date: string
-// }
-
 const MovieCard: React.FC<Movie> = ({ id, original_title, poster_path }) => {
   return (
     <li>

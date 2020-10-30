@@ -8,7 +8,7 @@ const App = () => {
     <Router>
       <Header />
       <Route path='/movies' component={MovieScreen} exact />
-      <Redirect from='/' to='/movies' />
+      <Redirect from='/' to='/movies' exact />
     </Router>
   )
 }

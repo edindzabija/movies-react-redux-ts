@@ -25,6 +25,7 @@ export interface MoviesLoading {
 }
 export interface MoviesFail {
   type: typeof MOVIE_LIST_FAIL
+  payload: Error
 }
 
 export interface MoviesSuccess {

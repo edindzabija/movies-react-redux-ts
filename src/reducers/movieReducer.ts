@@ -8,7 +8,8 @@ import {
 
 interface DefaultStateI {
   loading: boolean
-  movies: Movie[]
+  movies?: Movie[]
+  error?: Error
 }
 
 const defaultState: DefaultStateI = {
@@ -34,7 +35,7 @@ const movieReducer = (
     case MOVIE_LIST_FAIL:
       return {
         loading: false,
-        movies: [],
+        error: action.payload,
       }
     default:
       return state
