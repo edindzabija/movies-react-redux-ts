@@ -27,6 +27,7 @@ const MovieScreen = () => {
           .slice(0, 10)
           .map((movie: Movie) => (
             <MovieCard
+              key={movie.id}
               id={movie.id}
               original_title={movie.original_title}
               overview={movie.overview}

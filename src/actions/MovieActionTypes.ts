@@ -2,14 +2,9 @@ export const MOVIE_LIST_LOADING = 'MOVIE_LIST_LOADING'
 export const MOVIE_LIST_FAIL = 'MOVIE_LIST_FAIL'
 export const MOVIE_LIST_SUCCESS = 'MOVIE_LIST_SUCCESS'
 
-// export const MOVIE_DETAILS_LOADING = 'MOVIE_DETAILS_LOADING'
-// export const MOVIE_DETAILS_FAIL = 'MOVIE_DETAILS_FAIL'
-// export const MOVIE_DETAILS_SUCCESS = 'MOVIE_DETAILS_SUCCESS'
-
-// export interface MovieType {
-//   loading: boolean
-//   movie: Movie[]
-// }
+export const MOVIE_DETAILS_LOADING = 'MOVIE_DETAILS_LOADING'
+export const MOVIE_DETAILS_FAIL = 'MOVIE_DETAILS_FAIL'
+export const MOVIE_DETAILS_SUCCESS = 'MOVIE_DETAILS_SUCCESS'
 
 export interface Movie {
   id: number
@@ -33,4 +28,23 @@ export interface MoviesSuccess {
   payload: Movie[]
 }
 
-export type MovieDispatchTypes = MoviesLoading | MoviesFail | MoviesSuccess
+export interface MovieDetailsLoading {
+  type: typeof MOVIE_DETAILS_LOADING
+}
+export interface MovieDetailsFail {
+  type: typeof MOVIE_DETAILS_FAIL
+  payload: Error
+}
+
+export interface MovieDetailsSuccess {
+  type: typeof MOVIE_DETAILS_SUCCESS
+  payload: Movie
+}
+
+export type MovieDispatchTypes =
+  | MoviesLoading
+  | MoviesFail
+  | MoviesSuccess
+  | MovieDetailsLoading
+  | MovieDetailsFail
+  | MovieDetailsSuccess
