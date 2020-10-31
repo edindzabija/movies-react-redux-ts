@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootStore } from '../store'
-import { getMovies, searchMovies } from '../actions/MovieActions'
-import { Movie } from '../actions/MovieActionTypes'
-import MovieCard from '../components/MovieCard'
+import { getShows, searchShows } from '../actions/ShowActions'
+import { Show } from '../actions/ShowActionTypes'
+import ShowCard from '../components/ShowCard'
 import Search from '../components/Search'
 // import { useDebounce } from '../utils/useDebounce'
 
-const MovieScreen = () => {
+const ShowScreen = () => {
   const dispatch = useDispatch()
 
-  const movieState = useSelector((state: RootStore) => state.movies)
-  const { loading, movies, error } = movieState
+  const showState = useSelector((state: RootStore) => state.shows)
+  const { loading, shows, error } = showState
 
   // search logic
   const [query, setQuery] = useState(
@@ -28,32 +28,32 @@ const MovieScreen = () => {
 
   useEffect(() => {
     query !== null && query.length > 2
-      ? dispatch(searchMovies(query))
-      : dispatch(getMovies())
+      ? dispatch(searchShows(query))
+      : dispatch(getShows())
   }, [dispatch, query, query.length])
   // search logic
 
   return (
     <>
       <Search query={query} onSearch={searchQueryHandler} />
-      <div className='movie-list'>
+      <div className='show-list'>
         {loading ? (
           <h1>LOADING BOIIIIIIII</h1>
         ) : error ? (
           <h1>{error}</h1>
         ) : (
-          movies &&
-          movies
+          shows &&
+          shows
             .slice(0, 10)
-            .map((movie: Movie) => (
-              <MovieCard
-                key={movie.id}
-                id={movie.id}
-                original_title={movie.original_title}
-                overview={movie.overview}
-                release_date={movie.release_date}
-                poster_path={movie.poster_path}
-                backdrop_path={movie.backdrop_path}
+            .map((show: Show) => (
+              <ShowCard
+                key={show.id}
+                id={show.id}
+                name={show.name}
+                overview={show.overview}
+                release_date={show.release_date}
+                poster_path={show.poster_path}
+                backdrop_path={show.backdrop_path}
               />
             ))
         )}
@@ -62,4 +62,4 @@ const MovieScreen = () => {
   )
 }
 
-export default MovieScreen
+export default ShowScreen

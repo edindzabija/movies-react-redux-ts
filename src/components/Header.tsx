@@ -3,13 +3,13 @@ import { NavLink } from 'react-router-dom'
 
 const Header = () => {
   return (
-    <header>
-      <nav>
+    <header className='header'>
+      <nav className='nav'>
         <ul className='nav-links'>
           <li>
-            {/* <NavLink exact to='/shows'>
+            <NavLink exact to='/shows'>
               Shows
-            </NavLink> */}
+            </NavLink>
           </li>
           <li>
             <NavLink exact to='/movies'>

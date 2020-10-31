@@ -1,5 +1,6 @@
 import { Dispatch } from 'redux'
 import axios from 'axios'
+import api from '../utils/api'
 import {
   MovieDispatchTypes,
   MOVIE_LIST_LOADING,
@@ -10,7 +11,7 @@ import {
   MOVIE_DETAILS_SUCCESS,
 } from './MovieActionTypes'
 
-export const GetMovies = () => async (
+export const getMovies = () => async (
   dispatch: Dispatch<MovieDispatchTypes>
 ) => {
   try {
@@ -18,9 +19,7 @@ export const GetMovies = () => async (
       type: MOVIE_LIST_LOADING,
     })
 
-    const { data } = await axios.get(
-      `https://api.themoviedb.org/3/movie/top_rated?api_key=e3142c91b926eb540f28dc5348443306&language=en-US&page=1`
-    )
+    const { data } = await axios.get(api.topRatedMovies)
 
     dispatch({
       type: MOVIE_LIST_SUCCESS,
@@ -37,14 +36,14 @@ export const GetMovies = () => async (
   }
 }
 
-export const GetMovieDetails = (id: string) => async (
+export const getMovieDetails = (id: string) => async (
   dispatch: Dispatch<MovieDispatchTypes>
 ) => {
   try {
     dispatch({ type: MOVIE_DETAILS_LOADING })
 
     const { data } = await axios.get(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=e3142c91b926eb540f28dc5348443306&language=en-US`
+      `${api.base}/movie/${id}?api_key=${api.key}&${api.language}`
     )
 
     dispatch({
@@ -54,6 +53,31 @@ export const GetMovieDetails = (id: string) => async (
   } catch (error) {
     dispatch({
       type: MOVIE_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+export const searchMovies = (keyword: string) => async (
+  dispatch: Dispatch<MovieDispatchTypes>
+) => {
+  try {
+    dispatch({ type: MOVIE_LIST_LOADING })
+
+    const { data } = await axios.get(
+      `${api.base}/search/movie?api_key=${api.key}&${api.language}&query=${keyword}&page=1&include_adult=false`
+    )
+
+    dispatch({
+      type: MOVIE_LIST_SUCCESS,
+      payload: data.results,
+    })
+  } catch (error) {
+    dispatch({
+      type: MOVIE_LIST_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
