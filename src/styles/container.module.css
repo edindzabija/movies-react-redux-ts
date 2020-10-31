@@ -1,0 +1,20 @@
+.container {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 1%;
+  margin: auto 5%;
+  list-style: none;
+}
+.message {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: auto 1%;
+  }
+}

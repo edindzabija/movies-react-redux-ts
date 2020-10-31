@@ -43,7 +43,7 @@ export const getMovieDetails = (id: string) => async (
     dispatch({ type: MOVIE_DETAILS_LOADING })
 
     const { data } = await axios.get(
-      `${api.base}/movie/${id}?api_key=${api.key}&${api.language}`
+      `${api.base}/movie/${id}?api_key=${api.key}&${api.language}&append_to_response=videos,images`
     )
 
     dispatch({

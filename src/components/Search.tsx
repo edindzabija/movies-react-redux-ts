@@ -1,4 +1,5 @@
 import React, { useRef } from 'react'
+import styles from '../styles/search.module.css'
 
 interface SearchProps {
   onSearch: (searchQuery: string) => void
@@ -14,16 +15,18 @@ const Search: React.FC<SearchProps> = (props) => {
   }
 
   return (
-    <div className='search'>
-      <input
-        value={props.query}
-        type='text'
-        id='search'
-        name='search'
-        placeholder='Search:'
-        ref={inputRef}
-        onChange={onChangeHandler}
-      />
+    <div className={styles.search}>
+      <form>
+        <input
+          value={props.query}
+          type='text'
+          id='search'
+          name='search'
+          placeholder='Search:'
+          ref={inputRef}
+          onChange={onChangeHandler}
+        />
+      </form>
     </div>
   )
 }
