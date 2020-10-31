@@ -1,7 +1,5 @@
 const API = {
   base: 'https://api.themoviedb.org/3',
-  img_base: 'http://image.tmdb.org/t/p/w300/',
-  video_base: 'https://www.youtube.com/embed/',
   key: 'e3142c91b926eb540f28dc5348443306',
   language: 'language=en-US',
   topRatedMovies:
