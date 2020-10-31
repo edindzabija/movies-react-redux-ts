@@ -41,7 +41,7 @@ export const getShowDetails = (id: string) => async (
     dispatch({ type: SHOW_DETAILS_LOADING })
 
     const { data } = await axios.get(
-      `${api.base}/tv/${id}?api_key=${api.key}&${api.language}`
+      `${api.base}/tv/${id}?api_key=${api.key}&${api.language}&append_to_response=videos,images`
     )
 
     dispatch({

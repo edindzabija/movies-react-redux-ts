@@ -31,7 +31,7 @@ const MovieCard: React.FC<Movie> = ({
                 />
               )}
               <h2 className={styles.cardTitle}>{original_title}</h2>
-              <h4>{release_date}</h4>
+              <h4>{release_date.slice(0, 4)}</h4>
             </div>
             <div className={styles.descriptionContainer}>
               <p className={styles.description}>{overview.slice(0, 130)}...</p>

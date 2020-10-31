@@ -4,7 +4,6 @@ import { RootStore } from '../store'
 
 import { getMovies, searchMovies } from '../actions/MovieActions'
 import { Movie } from '../actions/MovieActionTypes'
-// import { useDebounce } from '../utils/useDebounce'
 
 import MovieCard from '../components/MovieCard'
 import Search from '../components/Search'
@@ -29,13 +28,25 @@ const MovieScreen = () => {
   const searchQueryHandler = (query: string) => {
     setQuery(query)
   }
-  // const debouncedQuery = useDebounce(query, 1000)
+  //debounce search
+  const [debouncedQuery, setDebouncedQuery] = useState(query)
 
   useEffect(() => {
-    query !== null && query.length > 2
-      ? dispatch(searchMovies(query))
+    const handler = setTimeout(() => {
+      setDebouncedQuery(query)
+    }, 1000)
+
+    return () => {
+      clearTimeout(handler)
+    }
+  }, [query])
+  // search
+
+  useEffect(() => {
+    debouncedQuery !== null && debouncedQuery.length > 2
+      ? dispatch(searchMovies(debouncedQuery))
       : dispatch(getMovies())
-  }, [dispatch, query, query.length])
+  }, [dispatch, debouncedQuery, debouncedQuery.length])
   // search logic
 
   return (

@@ -12,7 +12,8 @@ export interface Show {
   overview: string
   poster_path: string
   backdrop_path: string
-  release_date: string
+  first_air_date: string
+  videos?: { results: [{ key: '' }] }
 }
 
 export interface ShowsLoading {
