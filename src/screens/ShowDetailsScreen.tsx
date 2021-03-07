@@ -17,8 +17,7 @@ const ShowDetailsScreen = ({ match }: RouteComponentProps<TParams>) => {
   useEffect(() => {
     dispatch(getShowDetails(match.params.id))
   }, [dispatch, match])
-  console.log('show', show)
-
+ 
   return (
     <>
       {loading ? (
